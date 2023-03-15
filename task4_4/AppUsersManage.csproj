@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-task4_4-0a970775-616d-473a-bf67-ac206c9cf976</UserSecretsId>
+    <UserSecretsId>aspnet-AppUsersManage-0a970775-616d-473a-bf67-ac206c9cf976</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

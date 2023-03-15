@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using task4_4.Models;
+using AppUsersManage.Models;
 
-namespace task4_4.Data
+namespace AppUsersManage.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

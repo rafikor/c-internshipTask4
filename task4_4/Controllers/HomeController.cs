@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using task4_4.Models;
+using AppUsersManage.Models;
 
-namespace task4_4.Controllers
+namespace AppUsersManage.Controllers
 {
     public class HomeController : Controller
     {

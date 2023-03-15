@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "task4_4": {
+    "AppUsersManage": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

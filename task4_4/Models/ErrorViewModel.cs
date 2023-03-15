@@ -1,4 +1,4 @@
-namespace task4_4.Models
+namespace AppUsersManage.Models
 {
     public class ErrorViewModel
     {

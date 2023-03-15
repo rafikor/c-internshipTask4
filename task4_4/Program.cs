@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using task4_4.Data;
-using task4_4.Models;
+using AppUsersManage.Data;
+using AppUsersManage.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
