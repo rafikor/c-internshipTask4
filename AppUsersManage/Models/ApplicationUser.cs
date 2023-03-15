@@ -13,7 +13,7 @@ namespace AppUsersManage.Models
 
         public Status Status { get; set; }
 
-        ApplicationUser():base()
+        public ApplicationUser():base()
         {
             this.DateRegistered = DateTime.UtcNow.Date;
             this.DateLastVisited = DateTime.UtcNow.Date;

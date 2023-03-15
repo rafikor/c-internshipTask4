@@ -1,0 +1,31 @@
+﻿@model List<UsersStats>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>User Roles</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date of registration</th>
+            <th>Date of last visit</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.DateRegistered</td>
+                <td>@user.DateLastVisited</td>
+                <td>@user.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
