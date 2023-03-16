@@ -12,15 +12,16 @@
 <form id="account" method="post">
     <div class="btn-toolbar">
         <div class="btn-group">
-            <button type="submit" class="btn btn-primary px-3" name="action" value="Block" title="Block"><i class="bi bi-pause-fill"></i></button>
+            <button type="submit" class="btn btn-primary" name="action" value="Block" title="Block"><i class="bi bi-pause-fill"></i></button>
             <button type="submit" class="btn btn-primary" name="action" value="Unblock" title="Unblock"><i class="bi bi-play-fill"></i></button>
             <button type="submit" class="btn btn-primary" name="action" value="Delete" title="Delete"><i class="bi bi-trash3"></i></button>
         </div>
     </div>
-        <table class="table table-bordered border-primary">
+
+        <table class="table table-bordered border-primary" id="tblUsers">
         <thead>
             <tr>
-                <th>Id</th>
+                <th><input type="checkbox" id="chkAll" onclick="toggleCheckBoxes(this)" />Id</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Date of registration</th>
@@ -28,6 +29,7 @@
                 <th>Status</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach (var user in Model)
             {
@@ -44,3 +46,19 @@
         </tbody>
     </table>
 </form>
+
+<script type="text/javascript">
+function toggleCheckBoxes(elem) {
+
+        var div = document.getElementById('tblUsers');
+
+    var chk = div.getElementsByTagName('input');
+    var len = chk.length;
+
+    for (var i = 0; i < len; i++) {
+        if (chk[i].type === 'checkbox') {
+            chk[i].checked = elem.checked;
+        }
+    }
+}
+</script>
