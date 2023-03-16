@@ -116,6 +116,11 @@ namespace AppUsersManage.Areas.Identity.Pages.Account
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
+                if (!await Utils.Util.SaveLastLoginDateAsync(_userManager, Input.Email))
+                {
+                    return NotFound("Unable to load user for update last login.");
+                }
+
                 _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
                 return LocalRedirect(returnUrl);
             }

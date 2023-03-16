@@ -9,14 +9,14 @@ namespace AppUsersManage.Models
         public DateTime DateRegistered { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DateLastVisited { get; set; }
+        public DateTime DateLastLogin { get; set; }
 
         public Status Status { get; set; }
 
         public ApplicationUser():base()
         {
             this.DateRegistered = DateTime.UtcNow.Date;
-            this.DateLastVisited = DateTime.UtcNow.Date;
+            this.DateLastLogin = DateTime.UtcNow.Date;
             this.Status = Status.Active;
         }
     }

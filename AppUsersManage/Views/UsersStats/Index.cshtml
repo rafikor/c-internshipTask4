@@ -11,7 +11,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Date of registration</th>
-            <th>Date of last visit</th>
+            <th>Date of last login</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -22,8 +22,8 @@
                 <td>@user.UserId</td>
                 <td>@user.UserName</td>
                 <td>@user.Email</td>
-                <td>@user.DateRegistered</td>
-                <td>@user.DateLastVisited</td>
+                <td>@user.DateRegistered.ToShortDateString()</td>
+                <td>@user.DateLastVisited.ToShortDateString()</td>
                 <td>@user.Status</td>
             </tr>
         }

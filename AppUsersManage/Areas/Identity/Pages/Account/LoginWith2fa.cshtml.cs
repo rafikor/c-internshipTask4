@@ -113,6 +113,11 @@ namespace AppUsersManage.Areas.Identity.Pages.Account
 
             if (result.Succeeded)
             {
+                if (!await Utils.Util.SaveLastLoginDateAsync(_userManager, user.Email))
+                {
+                    return NotFound("Unable to load user for update last login.");
+                }
+
                 _logger.LogInformation("User with ID '{UserId}' logged in with 2fa.", user.Id);
                 return LocalRedirect(returnUrl);
             }
