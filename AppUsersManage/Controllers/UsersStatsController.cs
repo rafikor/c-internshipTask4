@@ -25,6 +25,7 @@ namespace AppUsersManage.Controllers
             {
                 var thisViewModel = new UsersStats();
                 thisViewModel.UserId = user.Id;
+                thisViewModel.UserName = user.UserName;
                 thisViewModel.Email = user.Email;
                 thisViewModel.DateLastVisited = user.DateLastLogin;
                 thisViewModel.DateRegistered = user.DateRegistered;

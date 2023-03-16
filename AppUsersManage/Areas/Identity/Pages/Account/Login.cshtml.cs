@@ -112,9 +112,16 @@ namespace AppUsersManage.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                string userName = "";
+                var user = await _userManager.FindByEmailAsync(Input.Email);
+                if (user != null)
+                {
+                    userName = user.UserName;
+                }
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     if (!await Utils.Util.SaveLastLoginDateAsync(_userManager, Input.Email))
