@@ -21,7 +21,8 @@
         <table class="table table-bordered border-primary" id="tblUsers">
         <thead>
             <tr>
-                <th><input type="checkbox" id="chkAll" onclick="toggleCheckBoxes(this)" />Id</th>
+                <th><input type="checkbox" id="chkAll" onclick="toggleCheckBoxes(this)" /></th>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Date of registration</th>
@@ -34,7 +35,8 @@
             @foreach (var user in Model)
             {
                 <tr>
-                    <td>@Html.CheckBox("id_"+user.UserId, new { value = user.UserId }) @user.UserId</td>
+                    <td>@Html.CheckBox("id_"+user.UserId, new { value = user.UserId }) </td>
+                    <td>@user.UserId</td>
                     @*<td>@user.UserId</td>*@
                     <td>@user.UserName</td>
                     <td>@user.Email</td>
