@@ -18,7 +18,6 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    // Default Password settings.
     options.Password.RequireDigit = false;
     options.Password.RequireLowercase = false;
     options.Password.RequireNonAlphanumeric = false;
