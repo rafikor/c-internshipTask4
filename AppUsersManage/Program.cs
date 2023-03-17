@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AppUsersManage.Data;
 using AppUsersManage.Models;
+using AppUsersManage.UserDestroyerMiddleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseUserDestroyer();
 
 app.MapControllerRoute(
     name: "default",
