@@ -126,9 +126,6 @@ namespace AppUsersManage.Areas.Identity.Pages.Account
                 if (userWithSameEmail != null)
                 {
                     ModelState.AddModelError(string.Empty, "User with this email is already registered");
-                    //result.Errors.(new IdentityError() { Description = "User with this email is already registered" });
-                    //result = (IdentityResult) new IdentityError();
-                    //result.Description = "User with this email is already registered";
                 }
                 else
                 {
