@@ -17,7 +17,6 @@ namespace AppUsersManage.Models
 
         public string UserName { get; set; }
 
-        //[DataType()]
         public Status Status { get; set; }
     }
 }

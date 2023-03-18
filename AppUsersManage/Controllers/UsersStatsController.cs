@@ -55,14 +55,6 @@ namespace AppUsersManage.Controllers
                             ModelState.AddModelError(string.Empty, error.Description);
                         }
 
-                        /*var lockUser = await _userManager.SetLockoutEnabledAsync(user, true);
-                        var endDate = new DateTime(2222, 06, 06);
-                        var lockDate = await _userManager.SetLockoutEndDateAsync(user, endDate);
-
-                        if (!lockUser.Succeeded || !lockDate.Succeeded)
-                        {
-                            ModelState.AddModelError(string.Empty, $"Can't block user with email {user.Email}");
-                        }*/
                     }
                     break;
                 case "Unblock":
@@ -75,12 +67,6 @@ namespace AppUsersManage.Controllers
                         {
                             ModelState.AddModelError(string.Empty, error.Description);
                         }
-                        /*var lockUser = await _userManager.SetLockoutEnabledAsync(user, false);
-                        var lockDate = await _userManager.SetLockoutEndDateAsync(user, DateTime.Now - TimeSpan.FromMinutes(1));
-                        if (!lockUser.Succeeded || !lockDate.Succeeded)
-                        {
-                            ModelState.AddModelError(string.Empty, $"Can't block user with email {user.Email}");
-                        }*/
                     }
                     break;
                 case "Delete":
@@ -98,7 +84,7 @@ namespace AppUsersManage.Controllers
                     ModelState.AddModelError(string.Empty, $"Action {action} is not supported");
                     break;
             }
-            
+            MessageBox.Show("Successfully saved", " Student Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return this.RedirectToAction();
         }
 
