@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace AppUsersManage.Controllers
 {
@@ -41,52 +42,50 @@ namespace AppUsersManage.Controllers
         [ActionName("Index")]
         public async Task<IActionResult> IndexPost(IFormCollection accounts, string action)
         {
-            List<string> areSelectedItemsById = accounts["userId"].ToList<string>();
+            List<string> selectedItemsById = accounts["userId"].ToList<string>();
             switch (action)
             {
                 case "Block":
-                    foreach (var areSelectedId in areSelectedItemsById)
-                    {
-                        ApplicationUser user = await _userManager.FindByIdAsync(areSelectedId);
+                    await applyActionOnUsers(selectedItemsById, user => {
                         user.Status = Status.Blocked;
-                        var updateResult = await _userManager.UpdateAsync(user);
-                        foreach (var error in updateResult.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-
-                    }
+                        return _userManager.UpdateAsync(user);
+                    });
                     break;
                 case "Unblock":
-                    foreach (var areSelectedId in areSelectedItemsById)
-                    {
-                        ApplicationUser user = await _userManager.FindByIdAsync(areSelectedId);
+                    await applyActionOnUsers(selectedItemsById, user => {
                         user.Status = Status.Active;
-                        var updateResult = await _userManager.UpdateAsync(user);
-                        foreach (var error in updateResult.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
+                        return _userManager.UpdateAsync(user);
+                    });
                     break;
                 case "Delete":
-                    foreach (var areSelectedId in areSelectedItemsById)
-                    {
-                        ApplicationUser user = await _userManager.FindByIdAsync(areSelectedId);
-                        var deleteResult = await _userManager.DeleteAsync(user);
-                        foreach (var error in deleteResult.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
+                    await applyActionOnUsers(selectedItemsById, user => {
+                        return _userManager.DeleteAsync(user);
+                    });
                     break;
                 default:
                     ModelState.AddModelError(string.Empty, $"Action {action} is not supported");
                     break;
             }
-            MessageBox.Show("Successfully saved", " Student Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
             return this.RedirectToAction();
         }
 
+        private async Task applyActionOnUsers(List<string> selectedItemsById, Func<ApplicationUser, Task<IdentityResult>> action)
+        {
+            foreach (var selectedId in selectedItemsById)
+            {
+                ApplicationUser user = await _userManager.FindByIdAsync(selectedId);
+                var actionResult = await action(user);
+                translateErrorsToModelState(actionResult);
+            }
+        }
+
+        private void translateErrorsToModelState(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
     }
 }
