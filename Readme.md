@@ -10,3 +10,5 @@ Every user is able to block or delete himself or any other user.
 If user account is blocked or deleted any next user’s request redirects to the login page.
 User can use any non-empty password (even one character).
 Blocked user is not able to login, deleted user can re-register.
+
+Actual connection string from server is not in repo (and not in the history)
