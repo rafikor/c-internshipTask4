@@ -41,7 +41,7 @@ namespace AppUsersManage.Controllers
         [ActionName("Index")]
         public async Task<IActionResult> IndexPost(IFormCollection accounts, string action)
         {
-            List<string> areSelectedItemsById = GetSelectedItemsByIdFromForm(accounts);
+            List<string> areSelectedItemsById = accounts["userId"].ToList<string>();
             switch (action)
             {
                 case "Block":
@@ -100,23 +100,6 @@ namespace AppUsersManage.Controllers
             }
             
             return this.RedirectToAction();
-        }
-
-        private List<string> GetSelectedItemsByIdFromForm(IFormCollection accounts)
-        {
-            var selectedItemsById = new List<string>();
-            IEnumerable<string> Ids = accounts.Keys.Where(key => key.StartsWith("id_"));
-            int lengthOfPrefix = 3;//length of starting "id_"
-            foreach (string key in Ids)
-            {
-                string id = key.Substring(3);
-                bool isChecked = accounts[key].Count > 1;
-                if (isChecked)
-                {
-                    selectedItemsById.Add(id);
-                }
-            }
-            return selectedItemsById;
         }
 
     }
